@@ -48,7 +48,6 @@ class ViewController: UIViewController {
         JJHUD.showText(text: "Hello,World!", delay: delay)
     }
 
-
     @IBAction func text2ButtonClick(_ sender: Any) {
          JJHUD.showText(text: "无人问我粥可温\n无人与我共黄昏", delay: delay)
     }
