@@ -1,9 +1,7 @@
 <!--<img src="image/JJHUDLogo.png" width="100%">-->
-
 [![Version](https://img.shields.io/cocoapods/v/JJHUD.svg?style=flat)](http://cocoapods.org/pods/JJHUD)
 [![License](https://img.shields.io/cocoapods/l/JJHUD.svg?style=flat)](http://cocoapods.org/pods/JJHUD)
 [![Platform](https://img.shields.io/cocoapods/p/JJHUD.svg?style=flat)](http://cocoapods.org/pods/JJHUD)
-<!--[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)](https://github.com/Jinxiansen/JJHUD)-->
 [![Weibo](https://img.shields.io/badge/微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 <!--[![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JJHUD.svg)](https://github.com/jinxiansen/JJHUD/stargazers)-->
 
