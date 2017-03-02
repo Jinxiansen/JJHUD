@@ -41,6 +41,7 @@ class ViewController: UIViewController {
 
     @IBAction func loadingButtonClick(_ sender: Any) {
         JJHUD.showLoading()
+//        JJHUD.showLoading(text: "加载中")
     }
 
 
@@ -49,7 +50,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func text2ButtonClick(_ sender: Any) {
-         JJHUD.showText(text: "无人问我粥可温\n无人与我共黄昏", delay: delay)
+        let hud = JJHUD(text: "无人问我粥可温\n无人与我共黄昏", type: .text, delay: 0)
+        hud.backgroundColor = UIColor(red: 98/255, green: 162/255, blue: 238/255, alpha: 0.9)
+        hud.show()
+        hud.hide(delay: delay)
     }
 
     @IBAction func hideButtonClick(_ sender: UIButton) {

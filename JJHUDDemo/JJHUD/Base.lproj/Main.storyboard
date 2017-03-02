@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ezp-wU-5tS">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ezp-wU-5tS">
                                 <rect key="frame" x="127.5" y="182" width="120" height="303"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKt-hI-Znz">
@@ -128,7 +128,7 @@
                                         <color key="backgroundColor" red="0.57422113418579102" green="0.77019768953323364" blue="0.97095304727554321" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Hide">
-                                            <color key="titleColor" red="0.91001602564102568" green="0.91001602564102568" blue="0.91001602564102568" alpha="0.60495689655172413" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.085647724568843842" green="0.49405008554458618" blue="0.6902042031288147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" title="Show">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

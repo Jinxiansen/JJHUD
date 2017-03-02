@@ -94,28 +94,29 @@ public class JJHUD:UIView {
         } else {
             labelY = padding * 2 + imageWidth_Height
         }
-        if type != .loading {
-            if let text = text {
-                textLabel.text = text
-                addSubview(textLabel)
-                addConstraint(to: textLabel,
-                              edageInset: UIEdgeInsets(top: labelY,
-                                                       left: padding/2,
-                                                       bottom: -padding,
-                                                       right: -padding/2))
-                var textSize:CGSize = CGSize.zero
-                textSize = text.textSizeWithFont(font: textFont,
-                                      constrainedToSize:
-                    CGSize(width:selfWidth - padding * 4, height:CGFloat(MAXFLOAT)))
-                if textSize.height > 40 { // 1行以上,增加self宽度。
-                    selfWidth = 150
-                    textSize = text.textSizeWithFont(font: textFont,
-                                                     constrainedToSize:
-                        CGSize(width:selfWidth - padding * 4, height:CGFloat(MAXFLOAT)))
-                }
-                selfHeight = textSize.height + labelY
+        if let text = text {
+            textLabel.text = text
+            addSubview(textLabel)
+
+            addConstraint(to: textLabel,
+                          edageInset: UIEdgeInsets(top: labelY,
+                                                   left: padding/2,
+                                                   bottom: -padding,
+                                                   right: -padding/2))
+            var textSize:CGSize = CGSize.zero
+            textSize = size(from: text)
+            if textSize.height > 40 { // 1行以上,增加self宽度。
+                selfWidth = 150
+                textSize = size(from: text)
             }
+            selfHeight = textSize.height + labelY + padding
         }
+    }
+
+    private func size(from text:String) -> CGSize {
+       return text.textSizeWithFont(font: textFont,
+                                         constrainedToSize:
+            CGSize(width:selfWidth - padding * 2, height:CGFloat(MAXFLOAT)))
     }
 
     private func addImageView(image:UIImage) {
@@ -124,14 +125,7 @@ public class JJHUD:UIView {
         imageView?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView!)
 
-        addConstraint(toCenterX: imageView, toCenterY: nil)
-        activityView?.addConstraint(width: imageWidth_Height, height: imageWidth_Height)
-        addConstraint(with: imageView!,
-                      topView: self,
-                      leftView: nil,
-                      bottomView: nil,
-                      rightView: nil,
-                      edgeInset: UIEdgeInsets(top: padding, left: 0, bottom: 0, right: 0))
+        generalConstraint(at: imageView!)
     }
 
     private func addActivityView() {
@@ -140,16 +134,30 @@ public class JJHUD:UIView {
         activityView?.startAnimating()
         addSubview(activityView!)
 
-        activityView?.addConstraint(width: imageWidth_Height,
-                                    height: imageWidth_Height)
-        addConstraint(toCenterX: activityView, toCenterY: activityView)
+        generalConstraint(at: activityView!)
+    }
 
+    private func generalConstraint(at view:UIView) {
+
+        view.addConstraint(width: imageWidth_Height,
+                                    height: imageWidth_Height)
+        if let _ = text {
+            addConstraint(toCenterX: view, toCenterY: nil)
+            addConstraint(with: view,
+                          topView: self,
+                          leftView: nil,
+                          bottomView: nil,
+                          rightView: nil,
+                          edgeInset: UIEdgeInsets(top: padding, left: 0, bottom: 0, right: 0))
+        } else {
+            addConstraint(toCenterX: view, toCenterY: view)
+        }
     }
 
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    //git tag -m '0.2.0 release' '0.2.0'
     // TODO: static func
     static func showText(text:String?,delay:TimeInterval) {
         JJHUD(text: text,type:.text,delay: delay).show()
@@ -157,6 +165,10 @@ public class JJHUD:UIView {
 
     static func showLoading() {
         JJHUD(text: nil,type:.loading,delay: 0).show()
+    }
+
+    static func showLoading(text:String?) {
+        JJHUD(text: text,type:.loading,delay: 0).show()
     }
 
     static func showSuccess(text:String?,delay:TimeInterval) {
@@ -185,6 +197,12 @@ public class JJHUD:UIView {
         self.animate(hide: true, completion: {
             self.removeFromSuperview()
         })
+    }
+
+    public func hide(delay:TimeInterval = delayTime) {
+        asyncAfter(duration: delay) { 
+            self.hide()
+        }
     }
 
     static func hide() {
