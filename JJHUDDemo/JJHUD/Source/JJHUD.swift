@@ -157,7 +157,7 @@ public class JJHUD:UIView {
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //git tag -m '0.2.0 release' '0.2.0'
+
     // TODO: static func
     static func showText(text:String?,delay:TimeInterval) {
         JJHUD(text: text,type:.text,delay: delay).show()
