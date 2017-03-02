@@ -5,7 +5,7 @@
 [![Weibo](https://img.shields.io/badge/微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 <!--[![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JJHUD.svg)](https://github.com/jinxiansen/JJHUD/stargazers)-->
 
-<img src="JJHUDDemo/image/JJHUD.png" width="100%">
+<img src="JJHUDDemo/image/JJHUD.png" width="80%">
 ####`JJHUD` is an displays a translucent HUD with an indicator and/or labels .
 
 ####[中文说明](README.zh.md)
