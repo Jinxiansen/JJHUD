@@ -158,9 +158,13 @@ public class JJHUD:UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // TODO: static func
-    static func showText(text:String?,delay:TimeInterval) {
-        JJHUD(text: text,type:.text,delay: delay).show()
+    // TODO: Show func
+    static func showSuccess(text:String?,delay:TimeInterval) {
+        JJHUD(text: text, type: .success, delay: delay).show()
+    }
+
+    static func showError(text:String?,delay:TimeInterval) {
+        JJHUD(text: text, type: .error, delay: delay).show()
     }
 
     static func showLoading() {
@@ -171,16 +175,12 @@ public class JJHUD:UIView {
         JJHUD(text: text,type:.loading,delay: 0).show()
     }
 
-    static func showSuccess(text:String?,delay:TimeInterval) {
-        JJHUD(text: text, type: .success, delay: delay).show()
-    }
-
-    static func showError(text:String?,delay:TimeInterval) {
-        JJHUD(text: text, type: .error, delay: delay).show()
-    }
-
     static func showInfo(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .info, delay: delay).show()
+    }
+
+    static func showText(text:String?,delay:TimeInterval) {
+        JJHUD(text: text,type:.text,delay: delay).show()
     }
 
     public func show() {
@@ -193,6 +193,7 @@ public class JJHUD:UIView {
         }
     }
 
+    //MARK: Hide func
     public func hide() {
         self.animate(hide: true, completion: {
             self.removeFromSuperview()
@@ -223,7 +224,6 @@ public class JJHUD:UIView {
         $0.textAlignment = .center
         return $0
     }(UILabel())
-
 
     public override func updateConstraints() {
         super.updateConstraints()
