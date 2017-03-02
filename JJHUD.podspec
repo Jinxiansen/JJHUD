@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JJHUD"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.summary      = "JJHUD is an displays a translucent HUD with an indicator and/or labels(Swift)."
   s.homepage     = "https://github.com/Jinxiansen/JJHUD"
   s.license      = "MIT (LICENSE)"
