@@ -12,6 +12,8 @@ private let delay : TimeInterval = 1
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var pattern: PatternView!
+    
     @IBOutlet var buttonCollect: [UIButton]! {
         didSet {
             buttonCollect.forEach {
@@ -23,6 +25,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.pattern.setRhombusPattern()
+        self.pattern.color = UIColor.white
+        self.pattern.alpha = 0.1
+        self.pattern.cellWidthMax = 70
     }
 
 
@@ -53,7 +59,7 @@ class ViewController: UIViewController {
         let hud = JJHUD(text: "无人问我粥可温\n无人与我共黄昏", type: .text, delay: 0)
         hud.backgroundColor = UIColor(red: 98/255, green: 162/255, blue: 238/255, alpha: 0.9)
         hud.show()
-        hud.hide(delay: delay)
+        hud.hide(delay: 3)
     }
 
     @IBAction func hideButtonClick(_ sender: UIButton) {
@@ -83,6 +89,11 @@ class ViewController: UIViewController {
             })
 
         }, completion: nil)
+    }
+
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {

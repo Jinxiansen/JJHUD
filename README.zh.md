@@ -3,7 +3,7 @@
 ####`JJHUD` 是一个半透明的 HUD 指示器。
 
 ####注意
-`JJHUD` 基于 "Xcode 8.2 / iOS 10 而写 ，请在最新版 Xcode 来编译JJHUD,旧版本的 Xcode 可能有效，但不保证会出现一些兼容性问题。
+`JJHUD` 基于 `"Xcode 8.2 / Swift 3 / iOS 10` 而写 ，请在最新版 Xcode 来编译JJHUD,旧版本的 Xcode 可能有效，但不保证会出现一些兼容性问题。
 
 ##CocoaPods
 
