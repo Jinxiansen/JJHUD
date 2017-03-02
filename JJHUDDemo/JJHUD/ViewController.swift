@@ -46,8 +46,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loadingButtonClick(_ sender: Any) {
-        JJHUD.showLoading()
-//        JJHUD.showLoading(text: "加载中")
+//        JJHUD.showLoading()
+        JJHUD.showLoading(text: "加载中")
     }
 
 

@@ -8,7 +8,7 @@
 <img src="JJHUDDemo/image/JJHUD.png" width="100%">
 ####`JJHUD` is an displays a translucent HUD with an indicator and/or labels .
 
-####[中文说明](README.zh.md)
+####[中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/e8d62e731ab5)
  
 ##screenshots
 
