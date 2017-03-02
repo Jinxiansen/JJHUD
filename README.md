@@ -15,7 +15,7 @@
 
 ## Requirements
 
-`JHUD` works on ` "Xcode 8.2 , Swift 3 and ios 10+ to build. `
+`JJHUD` works on ` "Xcode 8.2 , Swift 3 and ios 10+ to build. `
 You will need the latest developer tools in order to build `JJHUD`. Old Xcode versions might work, but compatibility will not be explicitly maintained.
 
 ##CocoaPods
