@@ -9,22 +9,21 @@
 import UIKit
 
 private let delayTime : TimeInterval = 1.5
-private let padding : CGFloat = 15
-private let cornerRadius : CGFloat = 10.0
+private let padding : CGFloat = 10
+private let cornerRadius : CGFloat = 13.0
 private let imageWidth_Height : CGFloat = 36
 
-private let textFont = UIFont.systemFont(ofSize: 15)
+private let textFont = UIFont.systemFont(ofSize: 13)
 
 private let keyWindow = UIApplication.shared.keyWindow!
-private let screenWidth = UIScreen.main.bounds.width
-private let screenHeight = UIScreen.main.bounds.height
 
+private let JIdentifier = "JScreenView"
 
 enum JJHUDType {
     case success // image + text
     case error   // image + text
     case info    // image + text
-    case loading // image
+    case loading // image // 禁止交互
     case text    // text
 }
 
@@ -38,6 +37,7 @@ public class JJHUD:UIView {
     private var text : String?
     private var selfWidth:CGFloat = 90
     private var selfHeight:CGFloat = 90
+    private var screenView : UIView?
 
     init(text:String?,type:JJHUDType,delay:TimeInterval) {
         self.delay = delay
@@ -57,7 +57,7 @@ public class JJHUD:UIView {
         self.layer.cornerRadius = cornerRadius
 
         if text != nil {
-            selfWidth = 120
+            selfWidth = 110
         }
 
         guard let type = type else { return }
@@ -82,8 +82,18 @@ public class JJHUD:UIView {
         guard self.superview == nil else { return }
         keyWindow.addSubview(self)
         self.alpha = 0
+
         addConstraint(width: selfWidth, height: selfHeight) //
         keyWindow.addConstraint(toCenterX: self, constantx: 0, toCenterY: self, constanty: -50)
+
+        if type == .loading { // loading 状态加 View 遮挡，不可交互。
+            screenView = UIView(frame: UIScreen.main.bounds)
+            screenView?.backgroundColor = UIColor.brown.withAlphaComponent(0.1)
+            screenView?.restorationIdentifier = JIdentifier
+            screenView?.isUserInteractionEnabled = true
+            keyWindow.addSubview(screenView!)
+        }
+
     }
 
     private func addLabel() {
@@ -103,20 +113,15 @@ public class JJHUD:UIView {
                                                    left: padding/2,
                                                    bottom: -padding,
                                                    right: -padding/2))
-            var textSize:CGSize = CGSize.zero
-            textSize = size(from: text)
-            if textSize.height > 40 { // 1行以上,增加self宽度。
-                selfWidth = 150
-                textSize = size(from: text)
-            }
-            selfHeight = textSize.height + labelY + padding
+            let textSize:CGSize = size(from: text)
+            selfHeight = textSize.height + labelY + padding + 2
         }
     }
 
     private func size(from text:String) -> CGSize {
        return text.textSizeWithFont(font: textFont,
                                          constrainedToSize:
-            CGSize(width:selfWidth - padding * 2, height:CGFloat(MAXFLOAT)))
+            CGSize(width:selfWidth - padding, height:CGFloat(MAXFLOAT)))
     }
 
     private func addImageView(image:UIImage) {
@@ -159,34 +164,34 @@ public class JJHUD:UIView {
     }
 
     // TODO: Show func
-    static func showSuccess(text:String?,delay:TimeInterval) {
+    public static func showSuccess(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .success, delay: delay).show()
     }
 
-    static func showError(text:String?,delay:TimeInterval) {
+    public static func showError(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .error, delay: delay).show()
     }
 
-    static func showLoading() {
+    public static func showLoading() {
         JJHUD(text: nil,type:.loading,delay: 0).show()
     }
 
-    static func showLoading(text:String?) {
+    public static func showLoading(text:String?) {
         JJHUD(text: text,type:.loading,delay: 0).show()
     }
 
-    static func showInfo(text:String?,delay:TimeInterval) {
+    public static func showInfo(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .info, delay: delay).show()
     }
 
-    static func showText(text:String?,delay:TimeInterval) {
+    public static func showText(text:String?,delay:TimeInterval) {
         JJHUD(text: text,type:.text,delay: delay).show()
     }
 
     public func show() {
         self.animate(hide: false) { 
             if self.delay > 0 {
-                self.asyncAfter(duration: self.delay, completion: {
+                JJHUD.asyncAfter(duration: self.delay, completion: {
                     self.hide()
                 })
             }
@@ -197,22 +202,32 @@ public class JJHUD:UIView {
     public func hide() {
         self.animate(hide: true, completion: {
             self.removeFromSuperview()
+            self.screenView?.removeFromSuperview()
         })
     }
 
     public func hide(delay:TimeInterval = delayTime) {
-        asyncAfter(duration: delay) { 
+        JJHUD.asyncAfter(duration: delay) {
             self.hide()
         }
     }
 
-    static func hide() {
+    public static func hide() {
         for view in keyWindow.subviews {
             if view.isKind(of:self) {
                 view.animate(hide: true, completion: { 
                     view.removeFromSuperview()
                 })
             }
+            if view.restorationIdentifier == JIdentifier {
+                view.removeFromSuperview()
+            }
+        }
+    }
+
+    public static func hide(delay:TimeInterval = delayTime) {
+        asyncAfter(duration: delay) {
+            hide()
         }
     }
 
@@ -228,6 +243,7 @@ public class JJHUD:UIView {
     public override func updateConstraints() {
         super.updateConstraints()
     }
+
 }
 
 //TODO: Extension String
@@ -257,7 +273,7 @@ extension String {
 //TODO: Extension JJHUD
 extension JJHUD {
 
-    fileprivate func asyncAfter(duration:TimeInterval,
+    fileprivate class func asyncAfter(duration:TimeInterval,
                                 completion:(() -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + duration,
                                       execute: {

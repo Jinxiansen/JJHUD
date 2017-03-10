@@ -47,16 +47,17 @@ class ViewController: UIViewController {
 
     @IBAction func loadingButtonClick(_ sender: Any) {
 //        JJHUD.showLoading()
-        JJHUD.showLoading(text: "加载中")
-    }
+        JJHUD.showLoading(text: "加载中\n五秒后消失")
 
+        JJHUD.hide(delay: 5)
+    }
 
     @IBAction func textButtonClick(_ sender: Any) {
         JJHUD.showText(text: "Hello,World!", delay: delay)
     }
 
     @IBAction func text2ButtonClick(_ sender: Any) {
-        let hud = JJHUD(text: "无人问我粥可温\n无人与我共黄昏", type: .text, delay: 0)
+        let hud = JJHUD(text: "锄禾日当午汗滴禾下土", type: .text, delay: 0)
         hud.backgroundColor = UIColor(red: 98/255, green: 162/255, blue: 238/255, alpha: 0.9)
         hud.show()
         hud.hide(delay: 3)
