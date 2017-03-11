@@ -13,7 +13,7 @@
 		416262541E65792B001CCA0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416262521E65792B001CCA0F /* Main.storyboard */; };
 		416262561E65792B001CCA0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416262551E65792B001CCA0F /* Assets.xcassets */; };
 		416262591E65792B001CCA0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416262571E65792B001CCA0F /* LaunchScreen.storyboard */; };
-		41A07C971E66AC750016F58A /* JJHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A07C961E66AC750016F58A /* JJHUD.swift */; };
+		41C321B71E73A9F3007BA7CC /* JJHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C321B51E73A994007BA7CC /* JJHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		416262551E65792B001CCA0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		416262581E65792B001CCA0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4162625A1E65792B001CCA0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		41A07C961E66AC750016F58A /* JJHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJHUD.swift; sourceTree = "<group>"; };
+		41C321B51E73A994007BA7CC /* JJHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +42,7 @@
 		416262421E65792B001CCA0F = {
 			isa = PBXGroup;
 			children = (
+				41C321B41E73A994007BA7CC /* Source */,
 				4162624D1E65792B001CCA0F /* JJHUD */,
 				4162624C1E65792B001CCA0F /* Products */,
 			);
@@ -58,7 +59,6 @@
 		4162624D1E65792B001CCA0F /* JJHUD */ = {
 			isa = PBXGroup;
 			children = (
-				41A07C951E66AC750016F58A /* Source */,
 				4162624E1E65792B001CCA0F /* AppDelegate.swift */,
 				416262501E65792B001CCA0F /* ViewController.swift */,
 				416262521E65792B001CCA0F /* Main.storyboard */,
@@ -70,10 +70,10 @@
 			path = JJHUD;
 			sourceTree = "<group>";
 		};
-		41A07C951E66AC750016F58A /* Source */ = {
+		41C321B41E73A994007BA7CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				41A07C961E66AC750016F58A /* JJHUD.swift */,
+				41C321B51E73A994007BA7CC /* JJHUD.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -151,8 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41C321B71E73A9F3007BA7CC /* JJHUD.swift in Sources */,
 				416262511E65792B001CCA0F /* ViewController.swift in Sources */,
-				41A07C971E66AC750016F58A /* JJHUD.swift in Sources */,
 				4127CCF41E67F966001A71BE /* PatternView.swift in Sources */,
 				4162624F1E65792B001CCA0F /* AppDelegate.swift in Sources */,
 			);
