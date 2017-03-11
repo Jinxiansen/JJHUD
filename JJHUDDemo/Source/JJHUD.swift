@@ -164,31 +164,31 @@ public class JJHUD:UIView {
     }
 
     // TODO: Show func
-    internal static func showSuccess(text:String?,delay:TimeInterval) {
+    public static func showSuccess(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .success, delay: delay).show()
     }
 
-    internal static func showError(text:String?,delay:TimeInterval) {
+    public static func showError(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .error, delay: delay).show()
     }
 
-    internal static func showLoading() {
+    public static func showLoading() {
         JJHUD(text: nil,type:.loading,delay: 0).show()
     }
 
-    internal static func showLoading(text:String?) {
+    public static func showLoading(text:String?) {
         JJHUD(text: text,type:.loading,delay: 0).show()
     }
 
-    internal static func showInfo(text:String?,delay:TimeInterval) {
+    public static func showInfo(text:String?,delay:TimeInterval) {
         JJHUD(text: text, type: .info, delay: delay).show()
     }
 
-    internal static func showText(text:String?,delay:TimeInterval) {
+    public static func showText(text:String?,delay:TimeInterval) {
         JJHUD(text: text,type:.text,delay: delay).show()
     }
 
-    internal func show() {
+    public func show() {
         self.animate(hide: false) { 
             if self.delay > 0 {
                 JJHUD.asyncAfter(duration: self.delay, completion: {
@@ -199,20 +199,20 @@ public class JJHUD:UIView {
     }
 
     //MARK: Hide func
-    internal func hide() {
+    public func hide() {
         self.animate(hide: true, completion: {
             self.removeFromSuperview()
             self.screenView?.removeFromSuperview()
         })
     }
 
-    internal func hide(delay:TimeInterval = delayTime) {
+    public func hide(delay:TimeInterval = delayTime) {
         JJHUD.asyncAfter(duration: delay) {
             self.hide()
         }
     }
 
-    internal static func hide() {
+    public static func hide() {
         for view in keyWindow.subviews {
             if view.isKind(of:self) {
                 view.animate(hide: true, completion: { 
@@ -225,7 +225,7 @@ public class JJHUD:UIView {
         }
     }
 
-    internal static func hide(delay:TimeInterval = delayTime) {
+    public static func hide(delay:TimeInterval = delayTime) {
         asyncAfter(duration: delay) {
             hide()
         }
