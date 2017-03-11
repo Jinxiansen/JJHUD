@@ -28,7 +28,7 @@ enum JJHUDType {
 }
 
 
-internal class JJHUD:UIView {
+public class JJHUD:UIView {
 
     private var delay : TimeInterval = delayTime
     private var imageView :UIImageView?
@@ -159,7 +159,7 @@ internal class JJHUD:UIView {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -239,10 +239,6 @@ internal class JJHUD:UIView {
         $0.textAlignment = .center
         return $0
     }(UILabel())
-
-    override func updateConstraints() {
-        super.updateConstraints()
-    }
 
 }
 
