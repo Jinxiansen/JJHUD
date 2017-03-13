@@ -37,7 +37,6 @@ public class JJHUD:UIView {
     private var text : String?
     private var selfWidth:CGFloat = 90
     private var selfHeight:CGFloat = 90
-    private var screenView : UIView?
 
     init(text:String?,type:JJHUDType,delay:TimeInterval) {
         self.delay = delay
@@ -87,14 +86,10 @@ public class JJHUD:UIView {
         keyWindow.addConstraint(toCenterX: self, constantx: 0, toCenterY: self, constanty: -50)
 
         if type == .loading { // loading 状态加 View 遮挡，不可交互。
-            screenView = UIView(frame: UIScreen.main.bounds)
-            screenView?.backgroundColor = UIColor.brown.withAlphaComponent(0.1)
-            screenView?.restorationIdentifier = JIdentifier
-            screenView?.isUserInteractionEnabled = true
-            keyWindow.addSubview(screenView!)
+            keyWindow.addSubview(screenView)
         }
-
     }
+
 
     private func addLabel() {
 
@@ -114,7 +109,7 @@ public class JJHUD:UIView {
                                                    bottom: -padding,
                                                    right: -padding/2))
             let textSize:CGSize = size(from: text)
-            selfHeight = textSize.height + labelY + padding + 2
+            selfHeight = textSize.height + labelY + padding + 8
         }
     }
 
@@ -202,7 +197,7 @@ public class JJHUD:UIView {
     public func hide() {
         self.animate(hide: true, completion: {
             self.removeFromSuperview()
-            self.screenView?.removeFromSuperview()
+            self.screenView.removeFromSuperview()
         })
     }
 
@@ -230,6 +225,14 @@ public class JJHUD:UIView {
             hide()
         }
     }
+
+    private lazy var screenView:UIView = {
+        $0.frame = UIScreen.main.bounds
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        $0.restorationIdentifier = JIdentifier
+        $0.isUserInteractionEnabled = true
+        return $0
+    }(UIView())
 
     private lazy var textLabel:UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false

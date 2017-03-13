@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 
     @IBAction func text2ButtonClick(_ sender: Any) {
         let hud = JJHUD(text: "锄禾日当午汗滴禾下土", type: .text, delay: 0)
-        hud.backgroundColor = UIColor(red: 98/255, green: 162/255, blue: 238/255, alpha: 0.9)
+        hud.backgroundColor = UIColor(red: 18/255, green: 112/255, blue: 238/255, alpha: 0.9)
         hud.show()
         hud.hide(delay: 3)
     }
