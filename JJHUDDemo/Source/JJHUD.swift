@@ -9,7 +9,7 @@
 import UIKit
 
 private let delayTime : TimeInterval = 1.5
-private let padding : CGFloat = 10
+private let padding : CGFloat = 12
 private let cornerRadius : CGFloat = 13.0
 private let imageWidth_Height : CGFloat = 36
 

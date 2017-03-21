@@ -6,11 +6,11 @@
 <!--[![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JJHUD.svg)](https://github.com/jinxiansen/JJHUD/stargazers)-->
 
 <img src="JJHUDDemo/image/JJHUD.png" width="100%">
-####`JJHUD` is an displays a translucent HUD with an indicator and/or labels .
+#### `JJHUD` is an displays a translucent HUD with an indicator and/or labels .
 
-####[中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/e8d62e731ab5)
+#### [中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/e8d62e731ab5)
  
-##screenshots
+## Screenshots
 
 <img src="JJHUDDemo/image/1.gif" width="40%">
 
@@ -19,7 +19,7 @@
 `JJHUD` works on ` "Xcode 8.2 , Swift 3 and ios 10+ to build. `
 You will need the latest developer tools in order to build `JJHUD`. Old Xcode versions might work, but compatibility will not be explicitly maintained.
 
-##CocoaPods
+## CocoaPods
 
 CocoaPods is the recommended way to add JJHUD to your project.
 
@@ -59,10 +59,10 @@ For more examples, including how to use JJHUD , take a look at the bundled demo 
 
 ## Contacts	![](JJHUDDemo/image/z.jpg)
 
-####If you wish to contact me, email at: hi@jinxiansen.com
+#### If you wish to contact me, email at: hi@jinxiansen.com
 
-#####Sina : [@晋先森](http://weibo.com/3205872327)
-#####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
+##### Sina : [@晋先森](http://weibo.com/3205872327)
+##### Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
 ## License	
 
