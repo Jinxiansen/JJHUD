@@ -12,7 +12,7 @@
  
 ## Screenshots
 
-<img src="JJHUDDemo/image/1.gif" width="40%">
+<img src="JJHUDDemo/image/1.gif" width="40%"> 
 
 ## Requirements
 
