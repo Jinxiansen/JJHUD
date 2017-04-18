@@ -13,7 +13,7 @@ private let padding : CGFloat = 12
 private let cornerRadius : CGFloat = 13.0
 private let imageWidth_Height : CGFloat = 36
 
-private let textFont = UIFont.systemFont(ofSize: 13)
+private let textFont = UIFont.systemFont(ofSize: 14)
 
 private let keyWindow = UIApplication.shared.keyWindow!
 
@@ -23,7 +23,7 @@ enum JJHUDType {
     case success // image + text
     case error   // image + text
     case info    // image + text
-    case loading // image // 禁止交互
+    case loading // image
     case text    // text
 }
 
@@ -38,7 +38,8 @@ public class JJHUD:UIView {
     private var selfWidth:CGFloat = 90
     private var selfHeight:CGFloat = 90
 
-    init(text:String?,type:JJHUDType,delay:TimeInterval) {
+    // enable ：是否允许用户交互，默认允许。
+    init(text:String?,type:JJHUDType,delay:TimeInterval,enable:Bool = true,offset:CGPoint = CGPoint(x: 0, y: -50)) {
         self.delay = delay
         self.text = text
         self.type = type
@@ -46,10 +47,17 @@ public class JJHUD:UIView {
         super.init(frame: CGRect(origin: CGPoint.zero,
                                    size: CGSize(width: selfWidth,
                                                 height: selfWidth)))
-        config()
+        setupUI()
+
+        addLabel()
+        addHUDToKeyWindow(offset:offset)
+
+        if !enable { // 不可交互。
+            keyWindow.addSubview(screenView)
+        }
     }
 
-    private func config() {
+    private func setupUI() {
 
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
@@ -73,23 +81,16 @@ public class JJHUD:UIView {
             break
         }
 
-        addLabel()
-        addSelfToKeyWindow()
     }
 
-    private func addSelfToKeyWindow() {
+    private func addHUDToKeyWindow(offset:CGPoint) {
         guard self.superview == nil else { return }
         keyWindow.addSubview(self)
         self.alpha = 0
 
         addConstraint(width: selfWidth, height: selfHeight) //
-        keyWindow.addConstraint(toCenterX: self, constantx: 0, toCenterY: self, constanty: -50)
-
-        if type == .loading { // loading 状态加 View 遮挡，不可交互。
-            keyWindow.addSubview(screenView)
-        }
+        keyWindow.addConstraint(toCenterX: self, constantx: offset.x, toCenterY: self, constanty: offset.y)
     }
-
 
     private func addLabel() {
 
@@ -159,32 +160,33 @@ public class JJHUD:UIView {
     }
 
     // TODO: Show func
-    public static func showSuccess(text:String?,delay:TimeInterval) {
-        JJHUD(text: text, type: .success, delay: delay).show()
+    public static func showSuccess(text:String?,delay:TimeInterval,enable:Bool = true) {
+        JJHUD(text: text, type: .success, delay: delay,enable: enable).show()
     }
 
-    public static func showError(text:String?,delay:TimeInterval) {
-        JJHUD(text: text, type: .error, delay: delay).show()
+    public static func showError(text:String?,delay:TimeInterval,enable:Bool = true) {
+        JJHUD(text: text, type: .error, delay: delay,enable:enable).show()
     }
 
-    public static func showLoading() {
-        JJHUD(text: nil,type:.loading,delay: 0).show()
+    public static func showLoading(enable:Bool = false) {
+        JJHUD(text: nil,type:.loading,delay: 0,enable:enable).show()
     }
 
-    public static func showLoading(text:String?) {
-        JJHUD(text: text,type:.loading,delay: 0).show()
+    public static func showLoading(text:String?,enable:Bool = true) {
+        JJHUD(text: text,type:.loading,delay: 0,enable:enable).show()
     }
 
-    public static func showInfo(text:String?,delay:TimeInterval) {
-        JJHUD(text: text, type: .info, delay: delay).show()
+    public static func showInfo(text:String?,delay:TimeInterval,enable:Bool = true) {
+        JJHUD(text: text, type: .info, delay: delay,enable:enable).show()
     }
 
-    public static func showText(text:String?,delay:TimeInterval) {
-        JJHUD(text: text,type:.text,delay: delay).show()
+    public static func showText(text:String?,delay:TimeInterval,enable:Bool = true) {
+        JJHUD(text: text,type:.text,delay: delay,enable:enable).show()
     }
 
     public func show() {
-        self.animate(hide: false) { 
+
+        self.animate(hide: false) {
             if self.delay > 0 {
                 JJHUD.asyncAfter(duration: self.delay, completion: {
                     self.hide()
@@ -210,7 +212,7 @@ public class JJHUD:UIView {
     public static func hide() {
         for view in keyWindow.subviews {
             if view.isKind(of:self) {
-                view.animate(hide: true, completion: { 
+                view.animate(hide: true, completion: {
                     view.removeFromSuperview()
                 })
             }

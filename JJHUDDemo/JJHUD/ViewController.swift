@@ -31,10 +31,10 @@ class ViewController: UIViewController {
         self.pattern.cellWidthMax = 70
     }
 
-
+    // enable: 不允许交互
     @IBAction func successButtonClick(_ sender: Any) {
         
-         JJHUD.showSuccess(text: "加载成功", delay: delay)
+         JJHUD.showSuccess(text: "加载成功", delay: delay,enable: false)
     }
 
     @IBAction func errorButtonClick(_ sender: Any) {
@@ -47,20 +47,22 @@ class ViewController: UIViewController {
 
     @IBAction func loadingButtonClick(_ sender: Any) {
 //        JJHUD.showLoading()
-        JJHUD.showLoading(text: "加载中\n五秒后消失")
+        JJHUD.showLoading(text: "加载中\n三秒后消失")
 
         JJHUD.hide(delay: 5)
+
     }
 
     @IBAction func textButtonClick(_ sender: Any) {
-        JJHUD.showText(text: "Hello,World!", delay: delay)
+        JJHUD.showText(text: "登录成功", delay: delay)
     }
 
     @IBAction func text2ButtonClick(_ sender: Any) {
-        let hud = JJHUD(text: "锄禾日当午汗滴禾下土", type: .text, delay: 0)
+        let hud = JJHUD(text: "锄禾日当午汗滴禾下土", type: .text, delay: 0,enable:true,offset:CGPoint(x: 0, y: view.frame.size.height / 2 - 100))
         hud.backgroundColor = UIColor(red: 18/255, green: 112/255, blue: 238/255, alpha: 0.9)
         hud.show()
-        hud.hide(delay: 3)
+
+        hud.hide(delay: 1.5)
     }
 
     @IBAction func hideButtonClick(_ sender: UIButton) {
